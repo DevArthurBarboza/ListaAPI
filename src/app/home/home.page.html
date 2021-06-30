@@ -1,20 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Lista de Compra (Gravada)
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10">
+        <ion-input  #input 
+                    [(ngModel)]="inputTexto" 
+                    (keyup.enter)="adiciona()">
+        </ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="adiciona()" >
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-list>
+    <ion-item *ngFor="let item of listaService.getLista(); 
+                      let indice=index">
+      <ion-label>{{item[1]}}</ion-label>
+      <ion-fab-button size="small" 
+                      color="danger"
+                      (click)="remover(item[0])">
+        <ion-icon name="remove-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-item>
+  </ion-list>  
+  <ion-button (click)="listaService.limpar()">LIMPAR TUDO</ion-button>
 </ion-content>

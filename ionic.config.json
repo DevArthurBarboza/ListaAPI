@@ -1,5 +1,7 @@
 {
   "name": "listaMemoria",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
